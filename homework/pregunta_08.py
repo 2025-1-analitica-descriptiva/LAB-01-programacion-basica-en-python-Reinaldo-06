@@ -27,3 +27,23 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+
+    numeros = set(line[1] for line in lines)
+
+    tuplas = []
+    for numero in numeros:
+        letras = []
+        for line in lines:
+            if numero == line[1]:
+                if line[0] not in letras:
+                    letras.append(line[0])
+                    letras = sorted(letras)
+        tuplas.append((int(numero),letras))
+
+    tuplas.sort(key=lambda x:x[0]) 
+    return tuplas
+
+print(pregunta_08())

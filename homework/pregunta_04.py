@@ -26,3 +26,15 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+
+    meses = ['{:02d}'.format(i) for i in range(1, 13)]
+    contar = [(month, sum(1 for line in lines if line[2][5:7] == month)) for month in meses]
+    contar.sort(key=lambda x:x[0])
+    return contar
+
+
+pregunta_04()
+

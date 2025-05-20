@@ -15,3 +15,29 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.strip().split('\t') for line in lines]
+    
+    claves = sorted(set(line[0] for line in lines))
+
+    contar = {}
+
+    for clave in claves:
+        contar[clave] = 0
+
+        for line in lines:
+            items = line[4].split(',')
+
+            for item in items:
+                _, valor =item.split(':')
+
+                if clave == line[0]:
+
+                    contar[clave] += int(valor)
+    
+    return contar
+
+print(pregunta_12())
+
+

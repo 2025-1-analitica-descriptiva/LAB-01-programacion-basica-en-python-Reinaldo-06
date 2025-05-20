@@ -24,3 +24,26 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+    
+    claves = sorted(set([item.split(':')[0] for line in lines 
+                         for item in line[4].split(',')]))
+
+    contar = {}
+
+    for clave in claves:
+        contar[clave] = 0  # inicializar
+
+        for line in lines:
+            items = line[4].split(',')
+
+            for item in items:
+                clave_actual, valor = item.split(':')
+                if clave_actual == clave:
+                    contar[clave] += 1
+
+
+    return contar
+

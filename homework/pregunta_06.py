@@ -26,3 +26,16 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+
+    claves = set(item.split(':')[0] for line in lines for item in line[4].split(','))
+    contar = []
+    for clave in sorted(claves):
+        valores = [int(item.split(':')[1]) for line in lines for item in line[4].split(',') if item.split(':')[0] == clave]
+        contar.append((clave, min(valores), max(valores)))
+    
+    return contar
+
+pregunta_06()

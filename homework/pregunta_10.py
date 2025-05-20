@@ -20,3 +20,11 @@ def pregunta_10():
 
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+    
+    contar = [(line[0], len(line[3].split(',')),len(line[4].split(',')) ) for line in lines]
+    return contar
+
+print(pregunta_10())

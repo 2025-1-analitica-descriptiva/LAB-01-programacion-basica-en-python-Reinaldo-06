@@ -15,3 +15,10 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    with open('files/input/data.csv', 'r') as f:
+        lines = f.readlines()
+        lines = [line.split('\t') for line in lines]
+    contar = [(letter, sum(int(line[1]) for line in lines if line[0] == letter)) for letter in set(line[0] for line in lines)]
+    contar.sort(key=lambda x: x[0])
+
+    return contar
